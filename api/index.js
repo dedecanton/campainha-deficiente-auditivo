@@ -8,13 +8,14 @@ const Client = require('twilio')(accountSid, authToken);
 const app = express();
 
 const sendMessage = () => {
-    Client.messages
-    .create({
-       body: 'Alguém apertou a campainha!',
-       from: '+18508096690',
-       to: '+5554996266120'
-     })
-    .then(message => console.log(message.sid));
+  Client.messages
+  .create({
+    body: 'Alguém apertou a campainha!',
+    from: process.env.TWILIO_SENDER_NUMBER,
+    to: process.env.RECIPIENT_NUMBER
+  })
+  .then(messages => console.log(messages.sid))
+  .catch(messages => console.log(messages.error_code + ' : ' + messages.error_message))
 }
 
 app.use('/sms', (req, res) => {
@@ -22,5 +23,5 @@ app.use('/sms', (req, res) => {
 });
 
 app.listen(8080, () => {
-  console.log('Express server listening on port 1337');
+  console.log('Express server listening on port 8080');
 });
