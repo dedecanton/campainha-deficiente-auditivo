@@ -23,6 +23,7 @@ const sendMessage = () => {
 };
 
 app.use("/sms", (req, res) => {
+  
   sendMessage();
   res.end(); //encerrar requisição
 });
