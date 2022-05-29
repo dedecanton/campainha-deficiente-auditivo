@@ -25,8 +25,13 @@ const sendMessage = () => {
 app.use("/sms", (req, res) => {
   
   sendMessage();
+  res.json({status: 'success'})
   res.end(); //encerrar requisição
 });
+
+app.get('/', (req,res) => {
+  res.send('Connection successfuly')
+})
 
 app.listen(8080, () => {
   console.log("Express server listening on port 8080");
