@@ -1,6 +1,7 @@
 FROM node:latest
-WORKDIR /app
-COPY package.json ./
+COPY package.json package.json  
 RUN npm install
-COPY . .
-CMD ["npm","start"]
+
+# Add your source files
+COPY . .  
+CMD ["npm","start"]  
